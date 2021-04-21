@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MatrixTransportationProblem.Library
+﻿namespace MatrixTransportationProblem.Library
 {
     public class MatrixTransportationService
     {
@@ -15,11 +13,8 @@ namespace MatrixTransportationProblem.Library
             _cost = cost;
         }
 
-        public TransportationResult Solve()
-        {
-            throw new NotImplementedException(nameof(Solve));
-            // todo: put impementation of algo here
-        }
+        public TransportationResult Solve() => 
+            Core.Solve(_producers, _consumers, _cost);
 
         public static TransportationResult Solve(double[] producers, double[] consumers, double[,] cost)
         {
