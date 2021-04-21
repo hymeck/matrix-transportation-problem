@@ -1,11 +1,19 @@
-﻿namespace MatrixTransportationProblem.Library
+﻿using MathNet.Numerics.LinearAlgebra;
+
+namespace MatrixTransportationProblem.Library
 {
     public sealed class TransportationResult
     {
         public readonly Immutable2DArray Plan;
 
-        public TransportationResult(Immutable2DArray plan) => Plan = plan;
+        private TransportationResult(Immutable2DArray plan) => Plan = plan;
 
-        public TransportationResult(double[,] plan) => Plan = new Immutable2DArray(plan);
+        private TransportationResult(double[,] plan) :
+            this(new Immutable2DArray(plan))
+        {
+        }
+
+        public static TransportationResult Create(double[,] plan) => new (plan);
+        public static TransportationResult Create(Matrix<double> plan) => Create(plan.ToArray());
     }
 }
